@@ -5,9 +5,9 @@ import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ResumeSection from "@/components/ResumeSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
 const Index = () => {
   return (
@@ -35,6 +35,7 @@ const Index = () => {
         <link rel="canonical" href="https://manishzalawadia.com" />
       </Helmet>
 
+      <CustomCursor />
       <div className="min-h-screen bg-background">
         <Navigation />
         <main>
@@ -43,7 +44,6 @@ const Index = () => {
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />
-          <ResumeSection />
           <ContactSection />
         </main>
         <Footer />
