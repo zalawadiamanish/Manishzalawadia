@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
@@ -8,8 +9,12 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import Preloader from "@/components/Preloader";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
       <Helmet>
@@ -35,19 +40,26 @@ const Index = () => {
         <link rel="canonical" href="https://manishzalawadia.com" />
       </Helmet>
 
-      <CustomCursor />
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <ExperienceSection />
-          <ProjectsSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </div>
+      <Preloader onComplete={() => setIsLoading(false)} />
+      
+      {!isLoading && (
+        <>
+          <CustomCursor />
+          <div className="min-h-screen bg-background">
+            <Navigation />
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <SkillsSection />
+              <ExperienceSection />
+              <ProjectsSection />
+              <ContactSection />
+            </main>
+            <Footer />
+          </div>
+          <BackToTop />
+        </>
+      )}
     </>
   );
 };

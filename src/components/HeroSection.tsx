@@ -1,5 +1,6 @@
 import { ArrowDown, Mail, MapPin, Phone, Github } from "lucide-react";
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
@@ -17,7 +18,12 @@ const HeroSection = () => {
       <div className="section-container relative z-10 pt-20">
         <div className="flex flex-col items-center text-center gap-8">
           {/* Avatar */}
-          <div className="relative animate-fade-up">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative"
+          >
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-primary p-1 animate-float">
               <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                 <span className="text-4xl md:text-5xl font-heading font-bold gradient-text">
@@ -28,10 +34,15 @@ const HeroSection = () => {
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center animate-pulse">
               <span className="text-primary-foreground text-xs font-bold">✓</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Name & Role */}
-          <div className="space-y-4 animate-fade-up animation-delay-100">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
+          >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold">
               <span className="text-foreground">Hi, I'm </span>
               <span className="gradient-text">Manish Zalawadia</span>
@@ -42,10 +53,15 @@ const HeroSection = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Educator | Computer Engineering Specialist | Mentor in IT, CS & Data Science
             </p>
-          </div>
+          </motion.div>
 
           {/* Contact Info Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3 animate-fade-up animation-delay-200">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap items-center justify-center gap-3"
+          >
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
               target="_blank"
@@ -66,10 +82,15 @@ const HeroSection = () => {
               <MapPin size={16} className="text-primary" />
               <span className="text-muted-foreground">Mumbai, India</span>
             </span>
-          </div>
+          </motion.div>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-up animation-delay-300">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
             <Button variant="hero" size="xl" asChild>
               <a href="#contact">Let's Connect</a>
             </Button>
@@ -83,10 +104,15 @@ const HeroSection = () => {
                 Send Email
               </a>
             </Button>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4 animate-fade-up animation-delay-400">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex items-center gap-4"
+          >
             <a
               href="https://github.com/zalawadiamanish"
               target="_blank"
@@ -103,15 +129,18 @@ const HeroSection = () => {
             >
               <Mail size={22} className="text-foreground" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Scroll Indicator */}
-          <a
+          <motion.a
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1 }}
             href="#about"
             className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float"
           >
             <ArrowDown size={24} className="text-muted-foreground" />
-          </a>
+          </motion.a>
         </div>
       </div>
     </section>

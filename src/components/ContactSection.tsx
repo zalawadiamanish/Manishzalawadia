@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import ScrollReveal from "./ScrollReveal";
 
 const contactInfo = [
   {
@@ -74,76 +75,80 @@ const ContactSection = () => {
 
       <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Get In Touch
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
-            Contact <span className="gradient-text">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+              Get In Touch
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
+              Contact <span className="gradient-text">Me</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-6 animate-slide-left">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-heading font-semibold text-foreground">
-                Let's Connect
-              </h3>
-              <p className="text-muted-foreground">
-                Feel free to reach out for academic collaborations, teaching
-                opportunities, or just to say hello!
-              </p>
-            </div>
+          <ScrollReveal direction="left">
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-heading font-semibold text-foreground">
+                  Let's Connect
+                </h3>
+                <p className="text-muted-foreground">
+                  Feel free to reach out for academic collaborations, teaching
+                  opportunities, or just to say hello!
+                </p>
+              </div>
 
-            <div className="space-y-4">
-              {contactInfo.map((item) => (
-                <div
-                  key={item.label}
-                  className="glass-card rounded-xl p-4 hover-glow"
-                >
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <item.icon size={22} className="text-primary" />
+              <div className="space-y-4">
+                {contactInfo.map((item) => (
+                  <div
+                    key={item.label}
+                    className="glass-card rounded-xl p-4 hover-glow"
+                  >
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                          <item.icon size={22} className="text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                            {item.label}
+                          </p>
+                          <p className="text-foreground font-medium">
+                            {item.value}
+                          </p>
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                          <item.icon size={22} className="text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                            {item.label}
+                          </p>
+                          <p className="text-foreground font-medium">
+                            {item.value}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                          {item.label}
-                        </p>
-                        <p className="text-foreground font-medium">
-                          {item.value}
-                        </p>
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <item.icon size={22} className="text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                          {item.label}
-                        </p>
-                        <p className="text-foreground font-medium">
-                          {item.value}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Contact Form */}
-          <div className="animate-slide-right">
+          <ScrollReveal direction="right">
             <form
               onSubmit={handleSubmit}
               className="glass-card rounded-2xl p-6 lg:p-8 space-y-5"
@@ -240,7 +245,7 @@ const ContactSection = () => {
                 )}
               </Button>
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
