@@ -1,4 +1,5 @@
 import { Code, Cpu, BarChart3, Users } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const skillCategories = [
   {
@@ -51,56 +52,56 @@ const SkillsSection = () => {
 
       <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Expertise
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
-            Skills & <span className="gradient-text">Expertise</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+              Expertise
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
+              Skills & <span className="gradient-text">Expertise</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+          </div>
+        </ScrollReveal>
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {skillCategories.map((category, index) => (
-            <div
-              key={category.title}
-              className="glass-card rounded-2xl p-6 lg:p-8 hover-glow group"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Card Header */}
-              <div className="flex items-center gap-4 mb-6">
-                <div
-                  className={`w-14 h-14 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
-                    category.color === "primary"
-                      ? "bg-primary/20 text-primary"
-                      : "bg-accent/20 text-accent"
-                  }`}
-                >
-                  <category.icon size={28} />
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-foreground">
-                  {category.title}
-                </h3>
-              </div>
-
-              {/* Skills List */}
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${
+            <ScrollReveal key={category.title} delay={index * 0.1}>
+              <div className="glass-card rounded-2xl p-6 lg:p-8 hover-glow group h-full">
+                {/* Card Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
                       category.color === "primary"
-                        ? "bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20"
-                        : "bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20"
+                        ? "bg-primary/20 text-primary"
+                        : "bg-accent/20 text-accent"
                     }`}
                   >
-                    {skill}
-                  </span>
-                ))}
+                    <category.icon size={28} />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold text-foreground">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* Skills List */}
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${
+                        category.color === "primary"
+                          ? "bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20"
+                          : "bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20"
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { GraduationCap, Users, BookOpen, Award } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const stats = [
   { icon: GraduationCap, value: "5+", label: "Years Teaching" },
@@ -15,68 +16,72 @@ const AboutSection = () => {
 
       <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            About Me
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
-            Know Who <span className="gradient-text">I Am</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+              About Me
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
+              Know Who <span className="gradient-text">I Am</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* About Text */}
-          <div className="space-y-6 animate-slide-left">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Enthusiastic and dedicated{" "}
-              <span className="text-foreground font-medium">
-                Assistant Professor
-              </span>{" "}
-              with over 5 years of teaching experience in Computer Science and
-              Information Technology.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Passionate about{" "}
-              <span className="text-primary">
-                simplifying complex technical concepts
-              </span>{" "}
-              and mentoring students across BSc IT, BSc CS, and BSc Data Science
-              programs.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Strong academic background with hands-on expertise in{" "}
-              <span className="text-foreground font-medium">
-                systems programming, microprocessors, computer networks
-              </span>
-              , and emerging technologies like machine learning.
-            </p>
+          <ScrollReveal direction="left">
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Enthusiastic and dedicated{" "}
+                <span className="text-foreground font-medium">
+                  Assistant Professor
+                </span>{" "}
+                with over 5 years of teaching experience in Computer Science and
+                Information Technology.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Passionate about{" "}
+                <span className="text-primary">
+                  simplifying complex technical concepts
+                </span>{" "}
+                and mentoring students across BSc IT, BSc CS, and BSc Data Science
+                programs.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Strong academic background with hands-on expertise in{" "}
+                <span className="text-foreground font-medium">
+                  systems programming, microprocessors, computer networks
+                </span>
+                , and emerging technologies like machine learning.
+              </p>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className="glass-card rounded-xl p-4 text-center hover-glow"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <stat.icon
-                    size={24}
-                    className="text-primary mx-auto mb-2"
-                  />
-                  <div className="text-2xl font-heading font-bold text-foreground">
-                    {stat.value}
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+                {stats.map((stat, index) => (
+                  <div
+                    key={stat.label}
+                    className="glass-card rounded-xl p-4 text-center hover-glow"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <stat.icon
+                      size={24}
+                      className="text-primary mx-auto mb-2"
+                    />
+                    <div className="text-2xl font-heading font-bold text-foreground">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Visual Element */}
-          <div className="relative animate-slide-right">
+          <ScrollReveal direction="right">
             <div className="glass-card rounded-2xl p-8 relative overflow-hidden">
               {/* Decorative gradient */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-primary opacity-10 rounded-full blur-2xl" />
@@ -126,7 +131,7 @@ const AboutSection = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

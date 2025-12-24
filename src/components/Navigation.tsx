@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import ThemeToggle from "./ThemeToggle";
+import VisitorCounter from "./VisitorCounter";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -54,15 +56,23 @@ const Navigation = () => {
             ))}
           </div>
 
+          {/* Right Side Actions */}
+          <div className="hidden md:flex items-center gap-4">
+            <VisitorCounter />
+            <ThemeToggle />
+          </div>
+
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -79,6 +89,9 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
+              <div className="px-4 pt-3 border-t border-border mt-2">
+                <VisitorCounter />
+              </div>
             </div>
           </div>
         )}
