@@ -1,4 +1,4 @@
-import { Download, ArrowDown, Mail, MapPin, Phone, Github } from "lucide-react";
+import { ArrowDown, Mail, MapPin, Phone, Github } from "lucide-react";
 import { Button } from "./ui/button";
 
 const HeroSection = () => {
@@ -47,7 +47,9 @@ const HeroSection = () => {
           {/* Contact Info Pills */}
           <div className="flex flex-wrap items-center justify-center gap-3 animate-fade-up animation-delay-200">
             <a
-              href="mailto:zalawadiamanish@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors text-sm"
             >
               <Mail size={16} className="text-primary" />
@@ -68,12 +70,18 @@ const HeroSection = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-up animation-delay-300">
-            <Button variant="hero" size="xl">
-              <Download size={20} />
-              Download Resume
+            <Button variant="hero" size="xl" asChild>
+              <a href="#contact">Let's Connect</a>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
-              <a href="#contact">Let's Connect</a>
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail size={20} />
+                Send Email
+              </a>
             </Button>
           </div>
 
@@ -88,7 +96,9 @@ const HeroSection = () => {
               <Github size={22} className="text-foreground" />
             </a>
             <a
-              href="mailto:zalawadiamanish@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-12 h-12 rounded-full bg-secondary hover:bg-primary/20 flex items-center justify-center transition-all hover:scale-110 hover:shadow-glow"
             >
               <Mail size={22} className="text-foreground" />

@@ -90,6 +90,10 @@ export default {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
+        "sparkle": {
+          "0%": { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
+          "100%": { opacity: "0", transform: "translate(-50%, -50%) scale(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +104,7 @@ export default {
         "slide-right": "slide-right 0.6s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 4s ease-in-out infinite",
+        "sparkle": "sparkle 0.5s ease-out forwards",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
