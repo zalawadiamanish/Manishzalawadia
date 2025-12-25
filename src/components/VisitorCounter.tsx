@@ -7,18 +7,18 @@ const VisitorCounter = () => {
 
   useEffect(() => {
     const trackVisit = async () => {
-      // Check if already visited in this session
-      const hasVisited = sessionStorage.getItem("hasVisited");
+      // Use localStorage to persist across browser sessions (unique device tracking)
+      const hasVisited = localStorage.getItem("portfolio_visited");
       
       if (!hasVisited) {
-        // Increment visitor count
+        // Increment visitor count only for new devices
         const { data, error } = await supabase.rpc("increment_visitor_count", {
           path: "/",
         });
 
         if (!error && data) {
           setVisitorCount(data);
-          sessionStorage.setItem("hasVisited", "true");
+          localStorage.setItem("portfolio_visited", "true");
         }
       } else {
         // Just fetch current count without incrementing
@@ -42,9 +42,9 @@ const VisitorCounter = () => {
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border/50 text-sm">
-      <Eye className="h-4 w-4 text-primary" />
-      <span className="text-muted-foreground">Visitors:</span>
+    <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-secondary/50 border border-border/50 text-xs sm:text-sm">
+      <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+      <span className="text-muted-foreground hidden xs:inline">Visitors:</span>
       <span className="font-semibold text-foreground">
         {visitorCount.toLocaleString()}
       </span>
