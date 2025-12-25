@@ -69,73 +69,73 @@ const ContactSection = () => {
     <section id="contact" className="section-padding relative bg-card/30">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-primary/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-accent/3 rounded-full blur-3xl" />
       </div>
 
       <div className="section-container relative z-10">
         {/* Section Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <span className="text-primary font-medium text-xs sm:text-sm uppercase tracking-wider">
               Get In Touch
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-2 mb-3 sm:mb-4">
               Contact <span className="gradient-text">Me</span>
             </h2>
-            <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+            <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-primary mx-auto rounded-full" />
           </div>
         </ScrollReveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <ScrollReveal direction="left">
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-heading font-semibold text-foreground">
+            <div className="space-y-5 sm:space-y-6">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-xl sm:text-2xl font-heading font-semibold text-foreground">
                   Let's Connect
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-sm sm:text-base">
                   Feel free to reach out for academic collaborations, teaching
                   opportunities, or just to say hello!
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {contactInfo.map((item) => (
                   <div
                     key={item.label}
-                    className="glass-card rounded-xl p-4 hover-glow"
+                    className="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4 hover-glow"
                   >
                     {item.href ? (
                       <a
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-4"
+                        className="flex items-center gap-3 sm:gap-4"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                          <item.icon size={22} className="text-primary" />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                          <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                        <div className="min-w-0">
+                          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">
                             {item.label}
                           </p>
-                          <p className="text-foreground font-medium">
+                          <p className="text-foreground font-medium text-sm sm:text-base truncate">
                             {item.value}
                           </p>
                         </div>
                       </a>
                     ) : (
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                          <item.icon size={22} className="text-primary" />
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                          <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                        <div className="min-w-0">
+                          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">
                             {item.label}
                           </p>
-                          <p className="text-foreground font-medium">
+                          <p className="text-foreground font-medium text-sm sm:text-base truncate">
                             {item.value}
                           </p>
                         </div>
@@ -151,13 +151,13 @@ const ContactSection = () => {
           <ScrollReveal direction="right">
             <form
               onSubmit={handleSubmit}
-              className="glass-card rounded-2xl p-6 lg:p-8 space-y-5"
+              className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-5"
             >
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="space-y-1.5 sm:space-y-2">
                   <label
                     htmlFor="name"
-                    className="text-sm font-medium text-foreground"
+                    className="text-xs sm:text-sm font-medium text-foreground"
                   >
                     Name
                   </label>
@@ -168,13 +168,13 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-secondary/50 border-border/50 focus:border-primary"
+                    className="bg-secondary/50 border-border/50 focus:border-primary text-sm sm:text-base"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5 sm:space-y-2">
                   <label
                     htmlFor="email"
-                    className="text-sm font-medium text-foreground"
+                    className="text-xs sm:text-sm font-medium text-foreground"
                   >
                     Email
                   </label>
@@ -186,15 +186,15 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-secondary/50 border-border/50 focus:border-primary"
+                    className="bg-secondary/50 border-border/50 focus:border-primary text-sm sm:text-base"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5 sm:space-y-2">
                 <label
                   htmlFor="subject"
-                  className="text-sm font-medium text-foreground"
+                  className="text-xs sm:text-sm font-medium text-foreground"
                 >
                   Subject
                 </label>
@@ -205,14 +205,14 @@ const ContactSection = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="bg-secondary/50 border-border/50 focus:border-primary"
+                  className="bg-secondary/50 border-border/50 focus:border-primary text-sm sm:text-base"
                 />
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5 sm:space-y-2">
                 <label
                   htmlFor="message"
-                  className="text-sm font-medium text-foreground"
+                  className="text-xs sm:text-sm font-medium text-foreground"
                 >
                   Message
                 </label>
@@ -223,15 +223,15 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="bg-secondary/50 border-border/50 focus:border-primary resize-none"
+                  rows={4}
+                  className="bg-secondary/50 border-border/50 focus:border-primary resize-none text-sm sm:text-base"
                 />
               </div>
 
               <Button
                 type="submit"
                 variant="hero"
-                size="xl"
+                size="lg"
                 className="w-full"
                 disabled={isSubmitting}
               >
@@ -239,7 +239,7 @@ const ContactSection = () => {
                   "Sending..."
                 ) : (
                   <>
-                    <Send size={20} />
+                    <Send size={18} />
                     Send Message
                   </>
                 )}
