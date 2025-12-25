@@ -2,7 +2,7 @@ import { GraduationCap, Users, BookOpen, Award } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const stats = [
-  { icon: GraduationCap, value: "5+", label: "Years Teaching" },
+  { icon: GraduationCap, value: "10+", label: "Years Teaching" },
   { icon: Users, value: "1000+", label: "Students Mentored" },
   { icon: BookOpen, value: "15+", label: "Subjects Taught" },
   { icon: Award, value: "3", label: "Departments" },
@@ -35,9 +35,9 @@ const AboutSection = () => {
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Enthusiastic and dedicated{" "}
                 <span className="text-foreground font-medium">
-                  Assistant Professor
+                Assistant Professor
                 </span>{" "}
-                with over 5 years of teaching experience in Computer Science and
+                with over 10 years of teaching experience in Computer Science and
                 Information Technology.
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
