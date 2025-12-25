@@ -46,54 +46,54 @@ const SkillsSection = () => {
     <section id="skills" className="section-padding relative bg-card/30">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-0 w-48 sm:w-64 md:w-72 h-48 sm:h-64 md:h-72 bg-primary/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-0 w-48 sm:w-64 md:w-72 h-48 sm:h-64 md:h-72 bg-accent/3 rounded-full blur-3xl" />
       </div>
 
       <div className="section-container relative z-10">
         {/* Section Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <span className="text-primary font-medium text-sm uppercase tracking-wider">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <span className="text-primary font-medium text-xs sm:text-sm uppercase tracking-wider">
               Expertise
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-2 mb-4">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-2 mb-3 sm:mb-4">
               Skills & <span className="gradient-text">Expertise</span>
             </h2>
-            <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
+            <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-primary mx-auto rounded-full" />
           </div>
         </ScrollReveal>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {skillCategories.map((category, index) => (
             <ScrollReveal key={category.title} delay={index * 0.1}>
-              <div className="glass-card rounded-2xl p-6 lg:p-8 hover-glow group h-full">
+              <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 hover-glow group h-full">
                 {/* Card Header */}
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div
-                    className={`w-14 h-14 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
+                    className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center transition-transform group-hover:scale-105 flex-shrink-0 ${
                       category.color === "primary"
-                        ? "bg-primary/20 text-primary"
-                        : "bg-accent/20 text-accent"
+                        ? "bg-primary/15 text-primary"
+                        : "bg-accent/15 text-accent"
                     }`}
                   >
-                    <category.icon size={28} />
+                    <category.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
                   </div>
-                  <h3 className="text-xl font-heading font-semibold text-foreground">
+                  <h3 className="text-base sm:text-lg md:text-xl font-heading font-semibold text-foreground">
                     {category.title}
                   </h3>
                 </div>
 
                 {/* Skills List */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${
+                      className={`px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-medium transition-all hover:scale-105 ${
                         category.color === "primary"
-                          ? "bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20"
-                          : "bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20"
+                          ? "bg-primary/10 text-primary border border-primary/20 hover:bg-primary/15"
+                          : "bg-accent/10 text-accent border border-accent/20 hover:bg-accent/15"
                       }`}
                     >
                       {skill}
