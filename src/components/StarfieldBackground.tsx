@@ -4,26 +4,26 @@ import { motion } from 'framer-motion';
 interface Star {
   id: number;
   x: number;
-  y: number;
+  startY: number;
   size: number;
   opacity: number;
-  twinkleDuration: number;
-  twinkleDelay: number;
+  duration: number;
+  delay: number;
 }
 
 const StarfieldBackground = () => {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    // Generate more stars for denser starfield like reference
-    const newStars: Star[] = Array.from({ length: 200 }, (_, i) => ({
+    // Generate falling stars
+    const newStars: Star[] = Array.from({ length: 150 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 2.5 + 0.5, // Smaller stars
+      startY: Math.random() * -50, // Start above viewport
+      size: Math.random() * 2.5 + 0.5,
       opacity: Math.random() * 0.8 + 0.2,
-      twinkleDuration: Math.random() * 4 + 2,
-      twinkleDelay: Math.random() * 5,
+      duration: Math.random() * 8 + 6, // 6-14 seconds to fall
+      delay: Math.random() * 10, // Stagger the start
     }));
     setStars(newStars);
   }, []);
@@ -42,84 +42,87 @@ const StarfieldBackground = () => {
         }}
       />
 
-      {/* Stars - white dots like reference */}
+      {/* Falling stars */}
       {stars.map((star) => (
         <motion.div
           key={star.id}
           className="absolute rounded-full bg-white"
           style={{
             left: `${star.x}%`,
-            top: `${star.y}%`,
             width: star.size,
             height: star.size,
+            boxShadow: star.size > 1.5 
+              ? `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.3)` 
+              : 'none',
           }}
-          animate={{
-            opacity: [star.opacity * 0.4, star.opacity, star.opacity * 0.4],
+          initial={{ 
+            y: `${star.startY}vh`,
+            opacity: 0,
+          }}
+          animate={{ 
+            y: ['0vh', '120vh'],
+            opacity: [0, star.opacity, star.opacity, 0],
           }}
           transition={{
-            duration: star.twinkleDuration,
-            delay: star.twinkleDelay,
+            duration: star.duration,
+            delay: star.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
       ))}
 
-      {/* Larger glowing stars scattered */}
+      {/* Larger glowing falling stars */}
       {[
-        { x: 15, y: 12, size: 3, delay: 0 },
-        { x: 85, y: 8, size: 2.5, delay: 1 },
-        { x: 45, y: 20, size: 2, delay: 0.5 },
-        { x: 75, y: 35, size: 3, delay: 1.5 },
-        { x: 25, y: 45, size: 2.5, delay: 2 },
-        { x: 90, y: 55, size: 2, delay: 0.8 },
-        { x: 10, y: 65, size: 2.5, delay: 1.2 },
-        { x: 55, y: 75, size: 3, delay: 0.3 },
-        { x: 35, y: 85, size: 2, delay: 1.8 },
-        { x: 80, y: 90, size: 2.5, delay: 0.6 },
-        { x: 5, y: 30, size: 2, delay: 2.2 },
-        { x: 60, y: 5, size: 2.5, delay: 1.1 },
+        { x: 15, size: 3, duration: 10, delay: 0 },
+        { x: 45, size: 2.5, duration: 8, delay: 2 },
+        { x: 75, size: 3, duration: 12, delay: 4 },
+        { x: 30, size: 2, duration: 9, delay: 6 },
+        { x: 60, size: 2.5, duration: 11, delay: 3 },
+        { x: 85, size: 2, duration: 7, delay: 5 },
+        { x: 10, size: 2.5, duration: 10, delay: 8 },
+        { x: 50, size: 3, duration: 9, delay: 1 },
       ].map((star, i) => (
         <motion.div
           key={`glow-${i}`}
           className="absolute rounded-full bg-white"
           style={{
             left: `${star.x}%`,
-            top: `${star.y}%`,
             width: star.size,
             height: star.size,
-            boxShadow: `0 0 ${star.size * 3}px ${star.size}px rgba(255, 255, 255, 0.3)`,
+            boxShadow: `0 0 ${star.size * 4}px ${star.size}px rgba(255, 255, 255, 0.4)`,
           }}
-          animate={{
-            opacity: [0.5, 1, 0.5],
-            scale: [1, 1.2, 1],
+          initial={{ y: '-10vh', opacity: 0 }}
+          animate={{ 
+            y: ['0vh', '120vh'],
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
-            duration: 3,
+            duration: star.duration,
             delay: star.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: 'linear',
           }}
         />
       ))}
 
-      {/* Shooting star effect */}
+      {/* Shooting stars - diagonal fast movement */}
       <motion.div
         className="absolute w-1 h-1 rounded-full bg-white"
         style={{ 
-          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), -20px 0 15px 1px rgba(255, 255, 255, 0.3)',
+          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), -20px -10px 15px 1px rgba(255, 255, 255, 0.3)',
           left: '5%',
-          top: '15%',
+          top: '-5%',
         }}
         animate={{
-          x: ['0vw', '40vw'],
-          y: ['0vh', '25vh'],
+          x: ['0vw', '50vw'],
+          y: ['0vh', '60vh'],
           opacity: [0, 1, 0],
         }}
         transition={{
-          duration: 1.5,
+          duration: 1.2,
           repeat: Infinity,
-          repeatDelay: 10,
+          repeatDelay: 8,
           ease: 'easeOut',
         }}
       />
@@ -127,19 +130,19 @@ const StarfieldBackground = () => {
       <motion.div
         className="absolute w-1 h-1 rounded-full bg-white"
         style={{ 
-          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), -20px 0 15px 1px rgba(255, 255, 255, 0.3)',
-          right: '20%',
-          top: '30%',
+          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), 20px -10px 15px 1px rgba(255, 255, 255, 0.3)',
+          right: '10%',
+          top: '-5%',
         }}
         animate={{
-          x: ['0vw', '-35vw'],
-          y: ['0vh', '20vh'],
+          x: ['0vw', '-40vw'],
+          y: ['0vh', '50vh'],
           opacity: [0, 1, 0],
         }}
         transition={{
-          duration: 1.8,
+          duration: 1.5,
           repeat: Infinity,
-          repeatDelay: 15,
+          repeatDelay: 12,
           delay: 5,
           ease: 'easeOut',
         }}

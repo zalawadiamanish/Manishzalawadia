@@ -13,7 +13,6 @@ import Preloader from "@/components/Preloader";
 import BackToTop from "@/components/BackToTop";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import ScrollProgress from "@/components/ScrollProgress";
-import FixedEmail from "@/components/FixedEmail";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +49,6 @@ const Index = () => {
           <StarfieldBackground />
           <ScrollProgress />
           <CustomCursor />
-          <FixedEmail />
           <div className="min-h-screen bg-transparent relative z-10">
             <Navigation />
             <main>
