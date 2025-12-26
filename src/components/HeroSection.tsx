@@ -1,4 +1,4 @@
-import { BookOpen, Brain, Sparkles, ChevronDown, Youtube, Github, Linkedin, Mail } from "lucide-react";
+import { BookOpen, Brain, Sparkles, ChevronDown, Youtube, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import InteractiveBackground from "./InteractiveBackground";
@@ -199,7 +199,8 @@ const HeroSection = () => {
               {[
                 { icon: Youtube, href: "https://youtube.com/@manishzalawadia?si=ekpn9crTLhmGxF4q", label: "YouTube", hoverColor: "hover:text-red-500 hover:bg-red-500/10" },
                 { icon: Github, href: "https://github.com/zalawadiamanish", label: "GitHub", hoverColor: "hover:text-primary hover:bg-primary/10" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/zalawadiamanish", label: "LinkedIn", hoverColor: "hover:text-blue-500 hover:bg-blue-500/10" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/manish-zalawadia-46128a3a1", label: "LinkedIn", hoverColor: "hover:text-blue-500 hover:bg-blue-500/10" },
+                { icon: Twitter, href: "https://x.com/zalawadiamanish", label: "Twitter", hoverColor: "hover:text-sky-500 hover:bg-sky-500/10" },
                 { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com", label: "Email", hoverColor: "hover:text-primary hover:bg-primary/10" },
               ].map((social, index) => (
                 <motion.a
