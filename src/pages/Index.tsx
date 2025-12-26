@@ -13,7 +13,7 @@ import Preloader from "@/components/Preloader";
 import BackToTop from "@/components/BackToTop";
 import StarfieldBackground from "@/components/StarfieldBackground";
 import ScrollProgress from "@/components/ScrollProgress";
-import ThemeColorPicker from "@/components/ThemeColorPicker";
+
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +63,7 @@ const Index = () => {
             <Footer />
           </div>
           <BackToTop />
-          <ThemeColorPicker />
+          
         </>
       )}
     </>
