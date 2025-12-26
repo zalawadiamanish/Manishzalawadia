@@ -173,7 +173,7 @@ const ThemeColorPicker = () => {
                       whileTap={{ scale: 0.95 }}
                     >
                       <div
-                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${theme.gradient} shadow-lg transition-all ${
+                        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${theme.gradient} shadow-lg transition-all ${
                           activeTheme === theme.name
                             ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
                             : "group-hover:ring-2 group-hover:ring-border group-hover:ring-offset-2 group-hover:ring-offset-background"

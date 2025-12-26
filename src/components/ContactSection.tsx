@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Github, BookOpen, Users, Lightbulb, GraduationCap } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, BookOpen, Users, Lightbulb, GraduationCap, Youtube } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -30,6 +30,12 @@ const contactInfo = [
     label: "GitHub",
     value: "github.com/zalawadiamanish",
     href: "https://github.com/zalawadiamanish",
+  },
+  {
+    icon: Youtube,
+    label: "YouTube",
+    value: "The Binary Professor",
+    href: "https://youtube.com/@manishzalawadia?si=ekpn9crTLhmGxF4q",
   },
 ];
 
