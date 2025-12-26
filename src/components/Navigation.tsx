@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin } from "lucide-react";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import VisitorCounter from "./VisitorCounter";
@@ -60,6 +60,15 @@ const Navigation = () => {
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center gap-4">
             <VisitorCounter />
+            <a
+              href="https://www.linkedin.com/in/manish-zalawadia-46128a3a1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
             <ThemeToggle />
           </div>
 
@@ -90,8 +99,17 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="px-4 pt-3 border-t border-border mt-2">
+              <div className="px-4 pt-3 border-t border-border mt-2 flex items-center justify-between">
                 <VisitorCounter />
+                <a
+                  href="https://www.linkedin.com/in/manish-zalawadia-46128a3a1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
               </div>
             </div>
           </div>
