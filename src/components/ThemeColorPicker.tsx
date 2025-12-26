@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, X, Sun, Moon, Monitor, ChevronUp } from "lucide-react";
+import { Palette, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const themes = [
@@ -57,7 +57,7 @@ const themes = [
 const ThemeColorPicker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTheme, setActiveTheme] = useState("Ocean");
-  const { theme: colorMode, setTheme: setColorMode, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Load saved theme on mount
@@ -81,7 +81,7 @@ const ThemeColorPicker = () => {
         applyTheme(theme, false);
       }
     }
-  }, [colorMode, resolvedTheme, mounted]);
+  }, [resolvedTheme, mounted]);
 
   const applyTheme = (theme: typeof themes[0], save = true) => {
     const root = document.documentElement;
@@ -106,27 +106,6 @@ const ThemeColorPicker = () => {
       localStorage.setItem("portfolio-color-theme", theme.name);
       setActiveTheme(theme.name);
       setIsOpen(false);
-    }
-  };
-
-  const cycleColorMode = () => {
-    // Cycle through: light -> dark -> system -> light
-    if (colorMode === "light") {
-      setColorMode("dark");
-    } else if (colorMode === "dark") {
-      setColorMode("system");
-    } else {
-      setColorMode("light");
-    }
-  };
-
-  const getModeIcon = () => {
-    if (colorMode === "system") {
-      return <Monitor size={20} className="text-primary" />;
-    } else if (colorMode === "dark" || (colorMode === "system" && resolvedTheme === "dark")) {
-      return <Sun size={20} className="text-amber-500" />;
-    } else {
-      return <Moon size={20} className="text-primary" />;
     }
   };
 
@@ -183,64 +162,24 @@ const ThemeColorPicker = () => {
                   </button>
                 </div>
 
-                {/* Light/Dark/System Mode Toggle in Modal */}
-                <div className="flex items-center justify-between p-3 mb-4 rounded-xl bg-secondary/50 border border-border/50">
-                  <span className="text-sm font-medium text-foreground">Appearance</span>
-                  <div className="flex gap-1.5">
-                    <button
-                      onClick={() => setColorMode("light")}
-                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
-                        colorMode === "light" 
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
-                      }`}
-                      title="Light mode"
-                    >
-                      <Sun size={14} />
-                    </button>
-                    <button
-                      onClick={() => setColorMode("dark")}
-                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
-                        colorMode === "dark" 
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
-                      }`}
-                      title="Dark mode"
-                    >
-                      <Moon size={14} />
-                    </button>
-                    <button
-                      onClick={() => setColorMode("system")}
-                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
-                        colorMode === "system" 
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
-                      }`}
-                      title="System preference"
-                    >
-                      <Monitor size={14} />
-                    </button>
-                  </div>
-                </div>
-
                 {/* Theme Grid */}
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   {themes.map((theme) => (
                     <motion.button
                       key={theme.name}
                       onClick={() => applyTheme(theme)}
-                      className="flex flex-col items-center gap-2 group"
+                      className="flex flex-col items-center gap-1.5 group"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <div
-                        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${theme.gradient} shadow-lg transition-all ${
+                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${theme.gradient} shadow-lg transition-all ${
                           activeTheme === theme.name
-                            ? "ring-2 ring-foreground ring-offset-2 ring-offset-background"
+                            ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
                             : "group-hover:ring-2 group-hover:ring-border group-hover:ring-offset-2 group-hover:ring-offset-background"
                         }`}
                       />
-                      <span className={`text-xs font-medium transition-colors ${
+                      <span className={`text-[10px] sm:text-xs font-medium transition-colors ${
                         activeTheme === theme.name 
                           ? "text-foreground" 
                           : "text-muted-foreground group-hover:text-foreground"
@@ -250,11 +189,6 @@ const ThemeColorPicker = () => {
                     </motion.button>
                   ))}
                 </div>
-
-                {/* Tip */}
-                <p className="text-xs text-muted-foreground text-center mt-5 pt-4 border-t border-border">
-                  Your preferences are saved automatically
-                </p>
               </div>
             </motion.div>
           </>
