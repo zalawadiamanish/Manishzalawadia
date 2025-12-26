@@ -12,6 +12,8 @@ import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import BackToTop from "@/components/BackToTop";
 import StarfieldBackground from "@/components/StarfieldBackground";
+import ScrollProgress from "@/components/ScrollProgress";
+
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,8 +47,9 @@ const Index = () => {
       {!isLoading && (
         <>
           <StarfieldBackground />
+          <ScrollProgress />
           <CustomCursor />
-          <div className="min-h-screen bg-background/80 relative z-10">
+          <div className="min-h-screen bg-transparent relative z-10">
             <Navigation />
             <main>
               <HeroSection />
