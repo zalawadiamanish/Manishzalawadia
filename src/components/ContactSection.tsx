@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, BookOpen, Users, Lightbulb, GraduationCap } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -31,6 +31,13 @@ const contactInfo = [
     value: "github.com/zalawadiamanish",
     href: "https://github.com/zalawadiamanish",
   },
+];
+
+const contactReasons = [
+  { icon: BookOpen, text: "Academic Collaboration" },
+  { icon: Users, text: "Mentorship" },
+  { icon: Lightbulb, text: "Curriculum Design" },
+  { icon: GraduationCap, text: "Research Guidance" },
 ];
 
 const ContactSection = () => {
@@ -69,39 +76,55 @@ const ContactSection = () => {
     <section id="contact" className="section-padding relative bg-card/30">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-primary/3 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-accent/3 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-amber-500/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-primary/3 rounded-full blur-3xl" />
       </div>
 
       <div className="section-container relative z-10">
         {/* Section Header */}
         <ScrollReveal>
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <span className="text-primary font-medium text-xs sm:text-sm uppercase tracking-wider">
-              Get In Touch
+            <span className="text-amber-500 font-medium text-xs sm:text-sm uppercase tracking-wider">
+              Let's Connect
             </span>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-2 mb-3 sm:mb-4">
-              Contact <span className="gradient-text">Me</span>
+              Start a <span className="gradient-text">Conversation</span>
             </h2>
-            <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-primary mx-auto rounded-full" />
+            <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-amber-500 mx-auto rounded-full" />
           </div>
         </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <ScrollReveal direction="left">
-            <div className="space-y-5 sm:space-y-6">
-              <div className="space-y-3 sm:space-y-4">
-                <h3 className="text-xl sm:text-2xl font-heading font-semibold text-foreground">
-                  Let's Connect
-                </h3>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  Feel free to reach out for academic collaborations, teaching
-                  opportunities, or just to say hello!
+            <div className="space-y-6">
+              {/* Invitation Message */}
+              <div className="glass-card rounded-xl p-5 sm:p-6 border-l-4 border-amber-500/50">
+                <p className="text-base sm:text-lg text-foreground font-medium leading-relaxed">
+                  If you care about <span className="text-primary">strong fundamentals</span>, 
+                  <span className="text-amber-500"> ethical systems</span>, and 
+                  <span className="text-primary"> real understanding</span> — let's talk.
                 </p>
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
+              {/* What to contact for */}
+              <div className="space-y-3">
+                <p className="text-sm text-muted-foreground uppercase tracking-wider">What you can contact me for</p>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                  {contactReasons.map((reason) => (
+                    <div
+                      key={reason.text}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/50 border border-border/50"
+                    >
+                      <reason.icon className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-foreground">{reason.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact Details */}
+              <div className="space-y-3">
                 {contactInfo.map((item) => (
                   <div
                     key={item.label}

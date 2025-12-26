@@ -1,24 +1,10 @@
-import { Mail, Phone, MapPin, Github, ChevronDown } from "lucide-react";
+import { BookOpen, Brain, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
-import { useTypewriter } from "@/hooks/useTypewriter";
 import InteractiveBackground from "./InteractiveBackground";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
 const HeroSection = () => {
-  const { text } = useTypewriter({
-    words: [
-      "Assistant Professor",
-      "Computer Science Expert",
-      "Data Science Mentor",
-      "IT Specialist",
-      "Academic Researcher",
-    ],
-    typingSpeed: 80,
-    deletingSpeed: 40,
-    delayBetweenWords: 2500,
-  });
-
   return (
     <section
       id="home"
@@ -37,8 +23,8 @@ const HeroSection = () => {
             className="relative"
           >
             {/* Glowing border effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary animate-spin-slow opacity-75 blur-sm" style={{ animationDuration: '8s' }} />
-            <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary p-[4px] animate-float">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-amber-500 to-primary animate-spin-slow opacity-75 blur-sm" style={{ animationDuration: '8s' }} />
+            <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-r from-primary via-amber-500 to-primary p-[4px] animate-float">
               <div className="w-full h-full rounded-full overflow-hidden bg-background">
                 <img 
                   src={profilePhoto} 
@@ -48,37 +34,36 @@ const HeroSection = () => {
               </div>
             </div>
             <motion.div 
-              className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center shadow-glow"
+              className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-amber-500 rounded-full flex items-center justify-center shadow-glow"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="text-primary-foreground text-xs font-bold">✓</span>
+              <span className="text-background text-xs font-bold">✓</span>
             </motion.div>
           </motion.div>
 
-          {/* Name & Role with Typewriter */}
+          {/* Bold Headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-2 sm:space-y-3 md:space-y-4"
+            className="space-y-3 sm:space-y-4 md:space-y-5"
           >
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
-              <span className="text-foreground">Hi, I'm </span>
-              <span className="gradient-text">Manish Zalawadia</span>
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight max-w-4xl">
+              <span className="text-foreground">I Teach Computers How to Think —</span>
+              <br />
+              <span className="gradient-text">and Students How to Build Them</span>
             </h1>
             
-            {/* Typewriter Effect */}
-            <div className="h-8 sm:h-10 md:h-12 flex items-center justify-center">
-              <p className="text-base xs:text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium">
-                <span className="text-primary">{text}</span>
-                <motion.span
-                  className="inline-block w-[3px] h-5 sm:h-6 md:h-7 bg-primary ml-1 align-middle"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                />
-              </p>
-            </div>
+            {/* Sub-headline */}
+            <motion.p 
+              className="text-base xs:text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <span className="text-primary">Assistant Professor</span> | Systems & Networks | Security-Focused Educator
+            </motion.p>
             
             <motion.p 
               className="text-sm xs:text-base sm:text-lg text-muted-foreground max-w-xl md:max-w-2xl mx-auto px-2"
@@ -86,51 +71,40 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Educator | Computer Engineering Specialist | Mentor in IT, CS & Data Science
+              Helping students turn fundamentals into real-world engineering
             </motion.p>
           </motion.div>
 
-          {/* Contact Info Pills */}
+          {/* Differentiators */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col xs:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3"
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl"
           >
-            <motion.a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 hover:bg-secondary hover:border-primary/30 transition-all text-xs sm:text-sm group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Mail size={14} className="text-primary flex-shrink-0 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-              <span className="text-muted-foreground truncate group-hover:text-foreground transition-colors">zalawadiamanish@gmail.com</span>
-            </motion.a>
-            <motion.a
-              href="tel:+919920221024"
-              className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 hover:bg-secondary hover:border-primary/30 transition-all text-xs sm:text-sm group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Phone size={14} className="text-primary flex-shrink-0 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
-              <span className="text-muted-foreground group-hover:text-foreground transition-colors">+91 99202 21024</span>
-            </motion.a>
-            <motion.span 
-              className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 text-xs sm:text-sm"
-              whileHover={{ scale: 1.02 }}
-            >
-              <MapPin size={14} className="text-primary flex-shrink-0 sm:w-4 sm:h-4" />
-              <span className="text-muted-foreground">Mumbai, India</span>
-            </motion.span>
+            {[
+              { icon: Brain, text: "Systems Thinking" },
+              { icon: Sparkles, text: "Fundamentals First" },
+              { icon: BookOpen, text: "Security Mindset" },
+            ].map((item, index) => (
+              <motion.div
+                key={item.text}
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-amber-500/20 text-xs sm:text-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+              >
+                <item.icon size={14} className="text-amber-500 flex-shrink-0 sm:w-4 sm:h-4" />
+                <span className="text-foreground font-medium">{item.text}</span>
+              </motion.div>
+            ))}
           </motion.div>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
             className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2"
           >
             <Button
@@ -139,11 +113,12 @@ const HeroSection = () => {
               className="group"
               onClick={() =>
                 document
-                  .getElementById("contact")
+                  .getElementById("about")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              <span>Let's Connect</span>
+              <Brain size={18} className="mr-2" />
+              <span>Explore My Thinking</span>
               <motion.span
                 className="ml-2"
                 animate={{ x: [0, 4, 0] }}
@@ -157,44 +132,14 @@ const HeroSection = () => {
               size="lg"
               className="group"
               onClick={() =>
-                window.open(
-                  "https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com",
-                  "_blank"
-                )
+                document
+                  .getElementById("skills")
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              <Mail size={16} className="mr-2 group-hover:scale-110 transition-transform" />
-              Send Email
+              <BookOpen size={16} className="mr-2 group-hover:scale-110 transition-transform" />
+              See How I Teach Systems
             </Button>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex items-center gap-4 pt-4"
-          >
-            <motion.a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 sm:p-3 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Github size={18} className="sm:w-5 sm:h-5" />
-            </motion.a>
-            <motion.a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 sm:p-3 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-              whileHover={{ scale: 1.1, rotate: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Mail size={18} className="sm:w-5 sm:h-5" />
-            </motion.a>
           </motion.div>
 
           {/* Scroll Indicator */}
