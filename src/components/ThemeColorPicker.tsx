@@ -134,35 +134,19 @@ const ThemeColorPicker = () => {
 
   return (
     <>
-      {/* Floating Theme Buttons */}
-      <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
-        {/* Color Theme Button */}
-        <motion.button
-          onClick={() => setIsOpen(true)}
-          className="w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5 }}
-        >
-          <Palette size={20} />
-        </motion.button>
-
-        {/* Light/Dark/System Mode Toggle */}
-        <motion.button
-          onClick={cycleColorMode}
-          className="w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
-          title={`Current: ${colorMode === "system" ? "System" : colorMode === "dark" ? "Dark" : "Light"}`}
-        >
-          {getModeIcon()}
-        </motion.button>
-      </div>
+      {/* Floating Theme Button - Right Side */}
+      <motion.button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+        title="Theme Colors"
+      >
+        <Palette size={20} />
+      </motion.button>
 
       {/* Theme Picker Modal */}
       <AnimatePresence>
