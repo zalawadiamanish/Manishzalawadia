@@ -1,4 +1,4 @@
-import { Github, Mail, Heart, Linkedin, BookOpen, GraduationCap, Youtube } from "lucide-react";
+import { Github, Mail, Heart, Linkedin, BookOpen, GraduationCap, Youtube, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const footerLinks = [
@@ -153,6 +153,17 @@ const Footer = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Linkedin size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="https://x.com/zalawadiamanish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl bg-secondary hover:bg-primary/15 border border-border/50 flex items-center justify-center transition-all group"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  title="Twitter/X"
+                >
+                  <Twitter size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
                 </motion.a>
                 <motion.a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com"

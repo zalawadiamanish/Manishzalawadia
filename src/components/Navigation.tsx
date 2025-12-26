@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Linkedin } from "lucide-react";
+import { Menu, X, Linkedin, Twitter } from "lucide-react";
 import { Button } from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import VisitorCounter from "./VisitorCounter";
@@ -69,6 +69,15 @@ const Navigation = () => {
             >
               <Linkedin size={20} />
             </a>
+            <a
+              href="https://x.com/zalawadiamanish"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Twitter"
+            >
+              <Twitter size={20} />
+            </a>
             <ThemeToggle />
           </div>
 
@@ -109,6 +118,15 @@ const Navigation = () => {
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
+                </a>
+                <a
+                  href="https://x.com/zalawadiamanish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  aria-label="Twitter"
+                >
+                  <Twitter size={20} />
                 </a>
               </div>
             </div>
