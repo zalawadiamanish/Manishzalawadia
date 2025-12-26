@@ -1,4 +1,4 @@
-import { BookOpen, Brain, Sparkles, ChevronDown } from "lucide-react";
+import { BookOpen, Brain, Sparkles, ChevronDown, Youtube, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import InteractiveBackground from "./InteractiveBackground";
@@ -188,11 +188,64 @@ const HeroSection = () => {
             ))}
           </motion.div>
 
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.65 }}
+            className="flex flex-col items-center gap-3"
+          >
+            <div className="flex items-center gap-3 sm:gap-4">
+              {[
+                { icon: Youtube, href: "https://youtube.com/@manishzalawadia?si=ekpn9crTLhmGxF4q", label: "YouTube", hoverColor: "hover:text-red-500 hover:bg-red-500/10" },
+                { icon: Github, href: "https://github.com/zalawadiamanish", label: "GitHub", hoverColor: "hover:text-primary hover:bg-primary/10" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/zalawadiamanish", label: "LinkedIn", hoverColor: "hover:text-blue-500 hover:bg-blue-500/10" },
+                { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com", label: "Email", hoverColor: "hover:text-primary hover:bg-primary/10" },
+              ].map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-muted-foreground transition-all ${social.hoverColor}`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                  title={social.label}
+                >
+                  <social.icon size={18} className="sm:w-5 sm:h-5" />
+                </motion.a>
+              ))}
+            </div>
+            <div className="flex flex-col items-center gap-1 text-xs text-muted-foreground">
+              <a 
+                href="https://youtube.com/@manishzalawadia?si=ekpn9crTLhmGxF4q" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-red-500 transition-colors"
+              >
+                <Youtube size={12} />
+                <span>The Binary Professor</span>
+              </a>
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=zalawadiamanish@gmail.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors"
+              >
+                <Mail size={12} />
+                <span>zalawadiamanish@gmail.com</span>
+              </a>
+            </div>
+          </motion.div>
+
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
             className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2"
           >
             <Button
