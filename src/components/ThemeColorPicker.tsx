@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, X, Sun, Moon, Monitor } from "lucide-react";
+import { Palette, X, Sun, Moon, Monitor, ChevronUp } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const themes = [
@@ -137,15 +137,25 @@ const ThemeColorPicker = () => {
       {/* Floating Theme Button - Right Side */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-        whileHover={{ scale: 1.1 }}
+        className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-1"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
         title="Theme Colors"
       >
-        <Palette size={20} />
+        <div className="w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all">
+          <Palette size={20} />
+        </div>
+        <motion.div
+          className="flex items-center gap-1 text-[10px] text-muted-foreground font-medium"
+          animate={{ y: [0, -2, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronUp size={12} className="text-primary" />
+          <span>Theme</span>
+        </motion.div>
       </motion.button>
 
       {/* Theme Picker Modal */}
