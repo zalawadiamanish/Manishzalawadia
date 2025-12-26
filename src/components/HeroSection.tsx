@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import InteractiveBackground from "./InteractiveBackground";
+import profilePhoto from "@/assets/profile-photo.jpg";
 
 const HeroSection = () => {
   const { text } = useTypewriter({
@@ -35,13 +36,13 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <div className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-gradient-primary p-[3px] animate-float">
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center relative overflow-hidden">
-                {/* Inner glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-                <span className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-heading font-bold gradient-text relative z-10">
-                  MZ
-                </span>
+            <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-primary p-[3px] animate-float">
+              <div className="w-full h-full rounded-full overflow-hidden">
+                <img 
+                  src={profilePhoto} 
+                  alt="Manish Zalawadia"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
             </div>
             <motion.div 
