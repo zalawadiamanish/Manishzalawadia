@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, X, Sun, Moon } from "lucide-react";
+import { Palette, X, Sun, Moon, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const themes = [
@@ -57,7 +57,7 @@ const themes = [
 const ThemeColorPicker = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTheme, setActiveTheme] = useState("Ocean");
-  const { theme: colorMode, setTheme: setColorMode } = useTheme();
+  const { theme: colorMode, setTheme: setColorMode, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Load saved theme on mount
@@ -73,7 +73,7 @@ const ThemeColorPicker = () => {
     }
   }, []);
 
-  // Re-apply theme when color mode changes
+  // Re-apply theme when color mode changes (including system preference changes)
   useEffect(() => {
     if (mounted) {
       const theme = themes.find(t => t.name === activeTheme);
@@ -81,11 +81,12 @@ const ThemeColorPicker = () => {
         applyTheme(theme, false);
       }
     }
-  }, [colorMode, mounted]);
+  }, [colorMode, resolvedTheme, mounted]);
 
   const applyTheme = (theme: typeof themes[0], save = true) => {
     const root = document.documentElement;
-    const isDark = colorMode === "dark" || (!colorMode && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    // Use resolvedTheme to get actual theme when in "system" mode
+    const isDark = resolvedTheme === "dark";
     
     // Apply different values for light/dark mode
     const primaryValue = isDark ? theme.primary : theme.primaryLight;
@@ -108,8 +109,25 @@ const ThemeColorPicker = () => {
     }
   };
 
-  const toggleColorMode = () => {
-    setColorMode(colorMode === "dark" ? "light" : "dark");
+  const cycleColorMode = () => {
+    // Cycle through: light -> dark -> system -> light
+    if (colorMode === "light") {
+      setColorMode("dark");
+    } else if (colorMode === "dark") {
+      setColorMode("system");
+    } else {
+      setColorMode("light");
+    }
+  };
+
+  const getModeIcon = () => {
+    if (colorMode === "system") {
+      return <Monitor size={20} className="text-primary" />;
+    } else if (colorMode === "dark" || (colorMode === "system" && resolvedTheme === "dark")) {
+      return <Sun size={20} className="text-amber-500" />;
+    } else {
+      return <Moon size={20} className="text-primary" />;
+    }
   };
 
   if (!mounted) return null;
@@ -131,21 +149,18 @@ const ThemeColorPicker = () => {
           <Palette size={20} />
         </motion.button>
 
-        {/* Light/Dark Mode Toggle */}
+        {/* Light/Dark/System Mode Toggle */}
         <motion.button
-          onClick={toggleColorMode}
+          onClick={cycleColorMode}
           className="w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.6 }}
+          title={`Current: ${colorMode === "system" ? "System" : colorMode === "dark" ? "Dark" : "Light"}`}
         >
-          {colorMode === "dark" ? (
-            <Sun size={20} className="text-amber-500" />
-          ) : (
-            <Moon size={20} className="text-primary" />
-          )}
+          {getModeIcon()}
         </motion.button>
       </div>
 
@@ -184,29 +199,42 @@ const ThemeColorPicker = () => {
                   </button>
                 </div>
 
-                {/* Light/Dark Mode Toggle in Modal */}
+                {/* Light/Dark/System Mode Toggle in Modal */}
                 <div className="flex items-center justify-between p-3 mb-4 rounded-xl bg-secondary/50 border border-border/50">
                   <span className="text-sm font-medium text-foreground">Appearance</span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1.5">
                     <button
                       onClick={() => setColorMode("light")}
-                      className={`p-2 rounded-lg transition-colors ${
+                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
                         colorMode === "light" 
                           ? "bg-primary text-primary-foreground" 
                           : "bg-secondary text-muted-foreground hover:text-foreground"
                       }`}
+                      title="Light mode"
                     >
-                      <Sun size={16} />
+                      <Sun size={14} />
                     </button>
                     <button
                       onClick={() => setColorMode("dark")}
-                      className={`p-2 rounded-lg transition-colors ${
+                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
                         colorMode === "dark" 
                           ? "bg-primary text-primary-foreground" 
                           : "bg-secondary text-muted-foreground hover:text-foreground"
                       }`}
+                      title="Dark mode"
                     >
-                      <Moon size={16} />
+                      <Moon size={14} />
+                    </button>
+                    <button
+                      onClick={() => setColorMode("system")}
+                      className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
+                        colorMode === "system" 
+                          ? "bg-primary text-primary-foreground" 
+                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                      }`}
+                      title="System preference"
+                    >
+                      <Monitor size={14} />
                     </button>
                   </div>
                 </div>
