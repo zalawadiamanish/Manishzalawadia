@@ -60,7 +60,6 @@ const ThemeColorPicker = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Load saved theme on mount
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("portfolio-color-theme");
@@ -73,7 +72,6 @@ const ThemeColorPicker = () => {
     }
   }, []);
 
-  // Re-apply theme when color mode changes (including system preference changes)
   useEffect(() => {
     if (mounted) {
       const theme = themes.find(t => t.name === activeTheme);
@@ -85,10 +83,8 @@ const ThemeColorPicker = () => {
 
   const applyTheme = (theme: typeof themes[0], save = true) => {
     const root = document.documentElement;
-    // Use resolvedTheme to get actual theme when in "system" mode
     const isDark = resolvedTheme === "dark";
     
-    // Apply different values for light/dark mode
     const primaryValue = isDark ? theme.primary : theme.primaryLight;
     const accentValue = isDark ? theme.accent : theme.accentLight;
     
@@ -96,7 +92,6 @@ const ThemeColorPicker = () => {
     root.style.setProperty("--accent", accentValue);
     root.style.setProperty("--ring", primaryValue);
     
-    // Update gradient CSS variables
     const primaryHsl = `hsl(${primaryValue})`;
     const accentHsl = `hsl(${accentValue})`;
     root.style.setProperty("--gradient-primary", `linear-gradient(135deg, ${primaryHsl} 0%, ${accentHsl} 100%)`);
@@ -113,7 +108,7 @@ const ThemeColorPicker = () => {
 
   return (
     <>
-      {/* Floating Theme Button - Right Side, above back-to-top */}
+      {/* Floating Theme Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-24 right-6 z-50 w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
@@ -131,7 +126,6 @@ const ThemeColorPicker = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm"
               initial={{ opacity: 0 }}
@@ -140,7 +134,6 @@ const ThemeColorPicker = () => {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Modal */}
             <motion.div
               className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -149,7 +142,6 @@ const ThemeColorPicker = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
               <div className="glass-card rounded-2xl p-5 sm:p-6 shadow-2xl">
-                {/* Header */}
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="text-lg font-heading font-semibold text-foreground">
                     Theme Colors
@@ -162,13 +154,12 @@ const ThemeColorPicker = () => {
                   </button>
                 </div>
 
-                {/* Theme Grid */}
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-4">
                   {themes.map((theme) => (
                     <motion.button
                       key={theme.name}
                       onClick={() => applyTheme(theme)}
-                      className="flex flex-col items-center gap-1.5 group"
+                      className="flex flex-col items-center gap-2 group"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -179,7 +170,7 @@ const ThemeColorPicker = () => {
                             : "group-hover:ring-2 group-hover:ring-border group-hover:ring-offset-2 group-hover:ring-offset-background"
                         }`}
                       />
-                      <span className={`text-[10px] sm:text-xs font-medium transition-colors ${
+                      <span className={`text-xs font-medium transition-colors ${
                         activeTheme === theme.name 
                           ? "text-foreground" 
                           : "text-muted-foreground group-hover:text-foreground"
