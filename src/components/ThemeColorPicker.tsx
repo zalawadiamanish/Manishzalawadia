@@ -10,7 +10,7 @@ const themes = [
     primaryLight: "210 70% 45%",
     accent: "185 55% 50%",
     accentLight: "195 60% 40%",
-    gradient: "from-cyan-500 to-blue-500",
+    gradient: "from-cyan-400 to-blue-500",
   },
   {
     name: "Sunset",
@@ -18,7 +18,7 @@ const themes = [
     primaryLight: "25 90% 45%",
     accent: "45 100% 55%",
     accentLight: "45 95% 45%",
-    gradient: "from-orange-500 to-amber-500",
+    gradient: "from-orange-500 to-red-500",
   },
   {
     name: "Forest",
@@ -26,7 +26,7 @@ const themes = [
     primaryLight: "155 55% 35%",
     accent: "140 50% 50%",
     accentLight: "140 45% 40%",
-    gradient: "from-emerald-500 to-green-500",
+    gradient: "from-emerald-400 to-green-500",
   },
   {
     name: "Violet",
@@ -34,7 +34,7 @@ const themes = [
     primaryLight: "270 65% 50%",
     accent: "290 60% 55%",
     accentLight: "290 55% 45%",
-    gradient: "from-violet-500 to-purple-500",
+    gradient: "from-violet-400 to-purple-500",
   },
   {
     name: "Crimson",
@@ -42,7 +42,7 @@ const themes = [
     primaryLight: "350 75% 45%",
     accent: "0 70% 55%",
     accentLight: "0 65% 45%",
-    gradient: "from-rose-500 to-red-500",
+    gradient: "from-rose-500 to-red-600",
   },
   {
     name: "Midnight",
@@ -50,7 +50,7 @@ const themes = [
     primaryLight: "220 65% 45%",
     accent: "240 60% 60%",
     accentLight: "240 55% 50%",
-    gradient: "from-blue-600 to-indigo-600",
+    gradient: "from-blue-500 to-indigo-600",
   },
 ];
 
@@ -110,79 +110,74 @@ const ThemeColorPicker = () => {
     <>
       {/* Floating Theme Button */}
       <motion.button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-6 z-50 w-12 h-12 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-        whileHover={{ scale: 1.1 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-24 right-6 z-50 w-12 h-12 rounded-full bg-primary/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-primary-foreground hover:bg-primary transition-all"
+        whileHover={{ scale: 1.1, rotate: 15 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
         title="Theme Colors"
       >
-        <Palette size={20} />
+        <Palette size={22} />
       </motion.button>
 
-      {/* Theme Picker Modal */}
+      {/* Theme Picker Panel - Side Panel like in reference */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
+          <motion.div
+            className="fixed right-6 bottom-40 z-50"
+            initial={{ opacity: 0, x: 20, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.95 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          >
+            <div className="bg-card border border-border rounded-2xl p-4 shadow-2xl min-w-[200px]">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-heading font-semibold text-foreground">
+                  Theme Colors
+                </h3>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-6 h-6 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              </div>
 
-            <motion.div
-              className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-xs -translate-x-1/2 -translate-y-1/2"
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            >
-              <div className="glass-card rounded-2xl p-5 sm:p-6 shadow-2xl">
-                <div className="flex items-center justify-between mb-5">
-                  <h3 className="text-lg font-heading font-semibold text-foreground">
-                    Theme Colors
-                  </h3>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              <div className="grid grid-cols-3 gap-3">
+                {themes.map((theme) => (
+                  <motion.button
+                    key={theme.name}
+                    onClick={() => applyTheme(theme)}
+                    className="flex flex-col items-center gap-1.5 group"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <X size={18} />
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  {themes.map((theme) => (
-                    <motion.button
-                      key={theme.name}
-                      onClick={() => applyTheme(theme)}
-                      className="flex flex-col items-center gap-2 group"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
+                    <div className="relative">
                       <div
-                        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${theme.gradient} shadow-lg transition-all ${
+                        className={`w-12 h-12 rounded-full bg-gradient-to-br ${theme.gradient} shadow-md transition-all ${
                           activeTheme === theme.name
-                            ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
-                            : "group-hover:ring-2 group-hover:ring-border group-hover:ring-offset-2 group-hover:ring-offset-background"
+                            ? "ring-2 ring-primary ring-offset-2 ring-offset-card"
+                            : ""
                         }`}
                       />
-                      <span className={`text-xs font-medium transition-colors ${
-                        activeTheme === theme.name 
-                          ? "text-foreground" 
-                          : "text-muted-foreground group-hover:text-foreground"
-                      }`}>
-                        {theme.name}
-                      </span>
-                    </motion.button>
-                  ))}
-                </div>
+                      {activeTheme === theme.name && (
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full border-2 border-card" />
+                      )}
+                    </div>
+                    <span className={`text-[10px] font-medium transition-colors ${
+                      activeTheme === theme.name 
+                        ? "text-foreground" 
+                        : "text-muted-foreground group-hover:text-foreground"
+                    }`}>
+                      {theme.name}
+                    </span>
+                  </motion.button>
+                ))}
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

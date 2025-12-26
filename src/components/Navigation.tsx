@@ -35,12 +35,13 @@ const Navigation = () => {
     >
       <div className="section-container">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo with underline */}
           <a
             href="#home"
-            className="text-2xl font-heading font-bold gradient-text"
+            className="relative text-2xl font-heading font-bold gradient-text"
           >
             MZ
+            <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
           </a>
 
           {/* Desktop Navigation */}
