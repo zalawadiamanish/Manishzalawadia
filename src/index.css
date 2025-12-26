@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Light Mode - Clean Academic Theme */
+    /* Light Mode - Clean Academic Theme with Amber Accent */
     --background: 210 20% 98%;
     --foreground: 220 25% 15%;
 
@@ -25,8 +25,8 @@
     --muted: 210 15% 90%;
     --muted-foreground: 220 15% 45%;
 
-    --accent: 195 60% 40%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 220 25% 15%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
@@ -38,8 +38,8 @@
     --radius: 0.5rem;
 
     /* Custom tokens - Light Mode */
-    --gradient-primary: linear-gradient(135deg, hsl(210 70% 45%) 0%, hsl(195 60% 40%) 100%);
-    --gradient-text: linear-gradient(90deg, hsl(210 70% 40%) 0%, hsl(195 60% 35%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(210 70% 45%) 0%, hsl(45 100% 50%) 100%);
+    --gradient-text: linear-gradient(90deg, hsl(210 70% 40%) 0%, hsl(45 100% 45%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 15% 97%) 100%);
     --gradient-glow: radial-gradient(circle at 50% 50%, hsl(210 70% 45% / 0.08) 0%, transparent 70%);
     
@@ -52,7 +52,7 @@
   }
 
   .dark {
-    /* Dark Mode - Elegant Academic Theme */
+    /* Dark Mode - Elegant Academic Theme with Amber Accent */
     --background: 220 20% 8%;
     --foreground: 210 30% 96%;
 
@@ -71,7 +71,7 @@
     --muted: 220 15% 20%;
     --muted-foreground: 215 15% 60%;
 
-    --accent: 185 55% 50%;
+    --accent: 45 100% 55%;
     --accent-foreground: 220 20% 8%;
 
     --destructive: 0 65% 55%;
@@ -82,8 +82,8 @@
     --ring: 200 65% 55%;
 
     /* Custom tokens - Dark Mode */
-    --gradient-primary: linear-gradient(135deg, hsl(200 65% 55%) 0%, hsl(185 55% 50%) 100%);
-    --gradient-text: linear-gradient(90deg, hsl(200 65% 60%) 0%, hsl(185 55% 55%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(200 65% 55%) 0%, hsl(45 100% 55%) 100%);
+    --gradient-text: linear-gradient(90deg, hsl(200 65% 60%) 0%, hsl(45 100% 60%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(220 18% 14%) 0%, hsl(220 18% 10%) 100%);
     --gradient-glow: radial-gradient(circle at 50% 50%, hsl(200 65% 55% / 0.1) 0%, transparent 70%);
     
