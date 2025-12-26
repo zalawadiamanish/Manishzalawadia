@@ -15,31 +15,119 @@ const HeroSection = () => {
 
       <div className="section-container relative z-10 pt-16 sm:pt-20">
         <div className="flex flex-col items-center justify-center space-y-6 sm:space-y-8 text-center">
-          {/* Avatar with glow effect */}
+          {/* Avatar with enhanced glow effect */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative group"
           >
-            {/* Glowing border effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-amber-500 to-primary animate-spin-slow opacity-75 blur-sm" style={{ animationDuration: '8s' }} />
-            <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-r from-primary via-amber-500 to-primary p-[4px] animate-float">
-              <div className="w-full h-full rounded-full overflow-hidden bg-background">
-                <img 
+            {/* Outer pulsing glow */}
+            <motion.div 
+              className="absolute -inset-4 sm:-inset-6 rounded-full bg-gradient-to-r from-primary/30 via-amber-500/40 to-primary/30 blur-2xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.4, 0.7, 0.4]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Inner rotating glow ring */}
+            <motion.div 
+              className="absolute -inset-1 sm:-inset-2 rounded-full bg-gradient-to-r from-primary via-amber-500 via-50% to-primary opacity-60 blur-md"
+              animate={{ rotate: 360 }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+            
+            {/* Secondary glow layer */}
+            <motion.div 
+              className="absolute -inset-2 sm:-inset-3 rounded-full bg-gradient-to-tr from-amber-400/20 via-transparent to-primary/20 blur-xl"
+              animate={{ 
+                opacity: [0.3, 0.6, 0.3],
+                scale: [0.98, 1.02, 0.98]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            />
+            
+            {/* Main photo container with gradient border */}
+            <motion.div 
+              className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full bg-gradient-to-r from-primary via-amber-500 to-primary p-[4px] sm:p-[5px]"
+              animate={{ 
+                y: [0, -8, 0]
+              }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <div className="w-full h-full rounded-full overflow-hidden bg-background shadow-2xl">
+                <motion.img 
                   src={profilePhoto} 
                   alt="Manish Zalawadia"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top transition-transform duration-500"
+                  whileHover={{ scale: 1.05 }}
                 />
               </div>
-            </div>
+            </motion.div>
+            
+            {/* Verified badge with glow */}
             <motion.div 
-              className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-amber-500 rounded-full flex items-center justify-center shadow-glow"
-              animate={{ scale: [1, 1.1, 1] }}
+              className="absolute -bottom-1 -right-1 sm:bottom-0 sm:right-0 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gradient-to-r from-amber-500 to-amber-400 rounded-full flex items-center justify-center shadow-lg"
+              animate={{ 
+                scale: [1, 1.15, 1],
+                boxShadow: [
+                  "0 0 20px rgba(245, 158, 11, 0.4)",
+                  "0 0 30px rgba(245, 158, 11, 0.6)",
+                  "0 0 20px rgba(245, 158, 11, 0.4)"
+                ]
+              }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="text-background text-xs font-bold">✓</span>
+              <span className="text-background text-xs sm:text-sm font-bold">✓</span>
             </motion.div>
+            
+            {/* Sparkle particles around photo */}
+            <motion.div
+              className="absolute top-2 -right-2 w-2 h-2 bg-amber-400 rounded-full"
+              animate={{ 
+                opacity: [0, 1, 0],
+                scale: [0.5, 1, 0.5],
+                y: [-5, -15, -5]
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, delay: 0 }}
+            />
+            <motion.div
+              className="absolute -top-1 left-4 w-1.5 h-1.5 bg-primary rounded-full"
+              animate={{ 
+                opacity: [0, 1, 0],
+                scale: [0.5, 1, 0.5],
+                y: [-3, -12, -3]
+              }}
+              transition={{ duration: 2.8, repeat: Infinity, delay: 0.5 }}
+            />
+            <motion.div
+              className="absolute bottom-4 -left-2 w-2 h-2 bg-amber-300 rounded-full"
+              animate={{ 
+                opacity: [0, 1, 0],
+                scale: [0.5, 1, 0.5],
+                x: [-5, -12, -5]
+              }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            />
           </motion.div>
 
           {/* Bold Headline */}
