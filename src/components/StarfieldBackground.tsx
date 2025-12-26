@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 interface Star {
   id: number;
@@ -13,8 +14,11 @@ interface Star {
 
 const StarfieldBackground = () => {
   const [stars, setStars] = useState<Star[]>([]);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Reduced particle count by ~40% (from 150 to 90)
     const newStars: Star[] = Array.from({ length: 90 }, (_, i) => ({
       id: i,
@@ -28,6 +32,75 @@ const StarfieldBackground = () => {
     setStars(newStars);
   }, []);
 
+  const isDark = mounted && theme === "dark";
+
+  // Light mode background styles
+  if (!isDark) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Light mode gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
+        
+        {/* Subtle color accents for light mode */}
+        <div 
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.08]"
+          style={{
+            background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+          }}
+        />
+        
+        <div 
+          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full opacity-[0.06]"
+          style={{
+            background: 'radial-gradient(circle, hsl(var(--accent)) 0%, transparent 60%)',
+            filter: 'blur(120px)',
+          }}
+        />
+
+        {/* Subtle floating dots for light mode */}
+        {stars.slice(0, 30).map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute rounded-full bg-primary/20"
+            style={{
+              left: `${star.x}%`,
+              width: star.size * 1.5,
+              height: star.size * 1.5,
+            }}
+            initial={{ 
+              y: `${star.startY}vh`,
+              opacity: 0,
+            }}
+            animate={{ 
+              y: ['0vh', '120vh'],
+              opacity: [0, star.opacity * 0.3, star.opacity * 0.3, 0],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+        ))}
+
+        {/* Light grid overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `
+              linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px',
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Dark mode starfield
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#0a0a0f]">
       {/* Deep dark gradient overlay */}
@@ -37,7 +110,7 @@ const StarfieldBackground = () => {
       <div 
         className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.015]"
         style={{
-          background: 'radial-gradient(circle, hsl(45 100% 50%) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, hsl(var(--accent)) 0%, transparent 60%)',
           filter: 'blur(100px)',
         }}
       />
@@ -51,7 +124,7 @@ const StarfieldBackground = () => {
         }}
       />
 
-      {/* Falling stars - reduced count and more subtle */}
+      {/* Falling stars */}
       {stars.map((star) => (
         <motion.div
           key={star.id}
@@ -81,7 +154,7 @@ const StarfieldBackground = () => {
         />
       ))}
 
-      {/* Reduced glowing stars (from 8 to 4) */}
+      {/* Reduced glowing stars */}
       {[
         { x: 20, size: 2.5, duration: 12, delay: 0 },
         { x: 55, size: 2, duration: 10, delay: 4 },
