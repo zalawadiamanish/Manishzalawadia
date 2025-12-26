@@ -36,12 +36,14 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-primary p-[3px] animate-float">
-              <div className="w-full h-full rounded-full overflow-hidden">
+            {/* Glowing border effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary animate-spin-slow opacity-75 blur-sm" style={{ animationDuration: '8s' }} />
+            <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full bg-gradient-to-r from-primary via-cyan-400 to-primary p-[4px] animate-float">
+              <div className="w-full h-full rounded-full overflow-hidden bg-background">
                 <img 
                   src={profilePhoto} 
                   alt="Manish Zalawadia"
-                  className="w-full h-[140%] object-cover object-[center_25%]"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
