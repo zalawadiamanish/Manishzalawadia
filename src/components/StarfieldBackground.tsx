@@ -15,45 +15,38 @@ const StarfieldBackground = () => {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    // Generate stars
-    const newStars: Star[] = Array.from({ length: 120 }, (_, i) => ({
+    // Generate more stars for denser starfield like reference
+    const newStars: Star[] = Array.from({ length: 200 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      opacity: Math.random() * 0.7 + 0.3,
-      twinkleDuration: Math.random() * 3 + 2,
+      size: Math.random() * 2.5 + 0.5, // Smaller stars
+      opacity: Math.random() * 0.8 + 0.2,
+      twinkleDuration: Math.random() * 4 + 2,
       twinkleDelay: Math.random() * 5,
     }));
     setStars(newStars);
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Dark gradient base */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#0a0a0f]">
+      {/* Deep dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0d14] to-[#0a0a0f]" />
       
-      {/* Subtle nebula effects */}
+      {/* Subtle color nebula hints */}
       <div 
-        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.03]"
+        className="absolute top-1/4 left-1/4 w-[800px] h-[800px] rounded-full opacity-[0.02]"
         style={{
-          background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-      />
-      <div 
-        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full opacity-[0.02]"
-        style={{
-          background: 'radial-gradient(circle, hsl(var(--accent)) 0%, transparent 70%)',
-          filter: 'blur(80px)',
+          background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 60%)',
+          filter: 'blur(120px)',
         }}
       />
 
-      {/* Stars */}
+      {/* Stars - white dots like reference */}
       {stars.map((star) => (
         <motion.div
           key={star.id}
-          className="absolute rounded-full bg-foreground"
+          className="absolute rounded-full bg-white"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
@@ -61,8 +54,7 @@ const StarfieldBackground = () => {
             height: star.size,
           }}
           animate={{
-            opacity: [star.opacity * 0.3, star.opacity, star.opacity * 0.3],
-            scale: [0.8, 1.2, 0.8],
+            opacity: [star.opacity * 0.4, star.opacity, star.opacity * 0.4],
           }}
           transition={{
             duration: star.twinkleDuration,
@@ -73,55 +65,82 @@ const StarfieldBackground = () => {
         />
       ))}
 
-      {/* Larger glowing stars */}
-      <motion.div
-        className="absolute top-[15%] left-[20%] w-2 h-2 rounded-full bg-foreground"
-        style={{ boxShadow: '0 0 10px 2px hsl(var(--foreground) / 0.5)' }}
-        animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.3, 1] }}
-        transition={{ duration: 4, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute top-[30%] right-[15%] w-2.5 h-2.5 rounded-full bg-foreground"
-        style={{ boxShadow: '0 0 12px 3px hsl(var(--foreground) / 0.4)' }}
-        animate={{ opacity: [0.3, 0.9, 0.3], scale: [1, 1.4, 1] }}
-        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-      />
-      <motion.div
-        className="absolute bottom-[25%] left-[30%] w-1.5 h-1.5 rounded-full bg-foreground"
-        style={{ boxShadow: '0 0 8px 2px hsl(var(--foreground) / 0.6)' }}
-        animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.5, 1] }}
-        transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-      />
-      <motion.div
-        className="absolute top-[60%] right-[25%] w-2 h-2 rounded-full bg-foreground"
-        style={{ boxShadow: '0 0 10px 2px hsl(var(--foreground) / 0.5)' }}
-        animate={{ opacity: [0.4, 0.95, 0.4], scale: [1, 1.3, 1] }}
-        transition={{ duration: 4.5, repeat: Infinity, delay: 0.5 }}
-      />
-      <motion.div
-        className="absolute bottom-[40%] left-[60%] w-1.5 h-1.5 rounded-full bg-foreground"
-        style={{ boxShadow: '0 0 8px 2px hsl(var(--foreground) / 0.5)' }}
-        animate={{ opacity: [0.35, 0.85, 0.35], scale: [1, 1.4, 1] }}
-        transition={{ duration: 3.5, repeat: Infinity, delay: 1.5 }}
-      />
+      {/* Larger glowing stars scattered */}
+      {[
+        { x: 15, y: 12, size: 3, delay: 0 },
+        { x: 85, y: 8, size: 2.5, delay: 1 },
+        { x: 45, y: 20, size: 2, delay: 0.5 },
+        { x: 75, y: 35, size: 3, delay: 1.5 },
+        { x: 25, y: 45, size: 2.5, delay: 2 },
+        { x: 90, y: 55, size: 2, delay: 0.8 },
+        { x: 10, y: 65, size: 2.5, delay: 1.2 },
+        { x: 55, y: 75, size: 3, delay: 0.3 },
+        { x: 35, y: 85, size: 2, delay: 1.8 },
+        { x: 80, y: 90, size: 2.5, delay: 0.6 },
+        { x: 5, y: 30, size: 2, delay: 2.2 },
+        { x: 60, y: 5, size: 2.5, delay: 1.1 },
+      ].map((star, i) => (
+        <motion.div
+          key={`glow-${i}`}
+          className="absolute rounded-full bg-white"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: star.size,
+            height: star.size,
+            boxShadow: `0 0 ${star.size * 3}px ${star.size}px rgba(255, 255, 255, 0.3)`,
+          }}
+          animate={{
+            opacity: [0.5, 1, 0.5],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 3,
+            delay: star.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
 
       {/* Shooting star effect */}
       <motion.div
-        className="absolute w-1 h-1 rounded-full bg-foreground"
+        className="absolute w-1 h-1 rounded-full bg-white"
         style={{ 
-          boxShadow: '0 0 6px 2px hsl(var(--foreground) / 0.8)',
-          left: '10%',
-          top: '10%',
+          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), -20px 0 15px 1px rgba(255, 255, 255, 0.3)',
+          left: '5%',
+          top: '15%',
         }}
         animate={{
-          x: ['0vw', '30vw'],
+          x: ['0vw', '40vw'],
+          y: ['0vh', '25vh'],
+          opacity: [0, 1, 0],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          repeatDelay: 10,
+          ease: 'easeOut',
+        }}
+      />
+      
+      <motion.div
+        className="absolute w-1 h-1 rounded-full bg-white"
+        style={{ 
+          boxShadow: '0 0 4px 2px rgba(255, 255, 255, 0.8), -20px 0 15px 1px rgba(255, 255, 255, 0.3)',
+          right: '20%',
+          top: '30%',
+        }}
+        animate={{
+          x: ['0vw', '-35vw'],
           y: ['0vh', '20vh'],
           opacity: [0, 1, 0],
         }}
         transition={{
-          duration: 2,
+          duration: 1.8,
           repeat: Infinity,
-          repeatDelay: 8,
+          repeatDelay: 15,
+          delay: 5,
           ease: 'easeOut',
         }}
       />

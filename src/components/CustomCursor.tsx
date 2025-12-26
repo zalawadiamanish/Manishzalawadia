@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -51,30 +52,65 @@ const CustomCursor = () => {
         }
       `}</style>
 
-      {/* Main cursor - subtle professional dot */}
+      {/* Main cursor - cyan circle with ring */}
       {isVisible && (
-        <div
-          className="fixed pointer-events-none z-[9999] transition-transform duration-150 ease-out"
+        <motion.div
+          className="fixed pointer-events-none z-[9999]"
           style={{
             left: position.x,
             top: position.y,
-            transform: `translate(-50%, -50%) scale(${isPointer ? 1.5 : 1})`,
+          }}
+          animate={{
+            x: "-50%",
+            y: "-50%",
+            scale: isPointer ? 1.3 : 1,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 28,
+            mass: 0.5,
           }}
         >
-          {/* Outer ring */}
-          <div 
-            className={`w-6 h-6 rounded-full border transition-all duration-150 ${
-              isPointer 
-                ? 'border-primary bg-primary/10' 
-                : 'border-muted-foreground/40'
-            }`} 
+          {/* Outer ring - animated rotation */}
+          <motion.div 
+            className="w-8 h-8 rounded-full border-2 flex items-center justify-center"
+            style={{
+              borderColor: "hsl(var(--primary))",
+              boxShadow: isPointer 
+                ? "0 0 20px hsl(var(--primary) / 0.5), inset 0 0 10px hsl(var(--primary) / 0.1)" 
+                : "0 0 10px hsl(var(--primary) / 0.3)",
+            }}
+            animate={{
+              rotate: [0, 360],
+            }}
+            transition={{
+              rotate: {
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+              },
+            }}
           />
+          
           {/* Inner dot */}
-          <div
-            className="absolute top-1/2 left-1/2 w-1.5 h-1.5 rounded-full bg-primary"
-            style={{ transform: "translate(-50%, -50%)" }}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full"
+            style={{ 
+              backgroundColor: "hsl(var(--primary))",
+              transform: "translate(-50%, -50%)",
+              boxShadow: "0 0 8px hsl(var(--primary))",
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
-        </div>
+        </motion.div>
       )}
     </>
   );
