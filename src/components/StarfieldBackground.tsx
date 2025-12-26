@@ -14,7 +14,7 @@ interface Star {
 
 const StarfieldBackground = () => {
   const [stars, setStars] = useState<Star[]>([]);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,8 @@ const StarfieldBackground = () => {
     setStars(newStars);
   }, []);
 
-  const isDark = mounted && theme === "dark";
+  // Use resolvedTheme to handle system preference
+  const isDark = mounted && resolvedTheme === "dark";
 
   // Light mode background styles
   if (!isDark) {
